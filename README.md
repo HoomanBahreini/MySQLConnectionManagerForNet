@@ -1,4 +1,4 @@
-# MySQLConnectionManagerForNet
+# MySQL Connection Manager For .NET
 
 The purpose of this project is to load balance requests among multiple hosts.
 

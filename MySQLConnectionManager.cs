@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace MySQLLoadBalancer
 {
-
     public static class MySQLConnectionManager
     {
         private const string _server = "server";

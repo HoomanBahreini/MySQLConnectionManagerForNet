@@ -34,7 +34,7 @@ Then instanciate your `DbContext` like:
 [DbConfigurationType(typeof(MySqlEFConfiguration))]
 public class MyDbContext : DbContext
 {
-    // instead of passing the connection string name to base constructor, use the following base construcotr  
+    // instead of passing the connection string name to base constructor, use the following code  
     // public B2bDbContext() : base("DataDB")
 
     // MySQLConnectionManager uses round robin algorithm to choose the least recently used host and establishes a connection to that node

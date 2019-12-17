@@ -39,7 +39,7 @@ public class MyDbContext : DbContext
 
     // MySQLConnectionManager uses round robin algorithm to choose the least recently used host and establishes a connection to that node
     // passing true for contextOwnConnection ensures that connection is terminated once MyDbContext is disposed
-    public MyDbContext() : base(MySQLConnectionManager.GetDeConnection("DataDB"), true/*contextOwnConnection*/)
+    public MyDbContext() : base(MySQLConnectionManager.GetLoadBalancedConnection("DataDB"), true/*contextOwnConnection*/)
     {
     }
 

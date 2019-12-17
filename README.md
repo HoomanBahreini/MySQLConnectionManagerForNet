@@ -14,8 +14,6 @@ This project is for developers who use .NET with MySQL connector for .Net. It al
 
 # How to use
 
-You can define a multi-host connection string as below:
-
 Create a folder in your project (you can call it DbConnectionManager) and copy the following 3 files in your project: 
 1. `DbLoadBalancer.cs`
 2. `LoadBalancedConnectionString.cs`
@@ -55,3 +53,8 @@ public class MyDbContext : DbContext
     }
 }
 ````
+
+# Keep in mind
+
+This is intented only for MySQL and Connector .Net, most other connectors already handle a multi-host connection string, and you won't be needing this project. 
+

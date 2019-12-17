@@ -14,7 +14,7 @@ This project is for developers who use .NET with MySQL connector for .Net. It al
 
 # How to use
 
-Create a folder in your project (you can call it DbConnectionManager) and copy the following 3 files in your project: 
+Create a folder in your project (you can call it `DbConnectionManager`) and copy the following 3 files in this folder: 
 1. `DbLoadBalancer.cs`
 2. `LoadBalancedConnectionString.cs`
 3. `MySQLConnectionManager.cs`

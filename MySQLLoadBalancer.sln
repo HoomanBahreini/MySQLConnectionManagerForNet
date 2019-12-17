@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySQLLoadBalancer", "MySQLLoadBalancer.csproj", "{CA3D3DD6-D9DE-4FD0-9C96-86DF7F607606}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CA3D3DD6-D9DE-4FD0-9C96-86DF7F607606}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA3D3DD6-D9DE-4FD0-9C96-86DF7F607606}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA3D3DD6-D9DE-4FD0-9C96-86DF7F607606}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA3D3DD6-D9DE-4FD0-9C96-86DF7F607606}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {566FCB84-050F-4746-8A47-4EADA0CF0ECA}
+	EndGlobalSection
+EndGlobal

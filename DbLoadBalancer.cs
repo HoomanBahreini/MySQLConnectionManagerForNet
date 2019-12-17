@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace MySQLLoadBalancer
 {
+    
     public class DbLoadBalancer
     {
         private readonly List<LoadBalancedConnectionString> _loadBalancedConnectionStrings;
@@ -36,25 +37,19 @@ namespace MySQLLoadBalancer
 
             foreach (var candidate in _loadBalancedConnectionStrings.OrderBy(c => c.LastTimeConnectionWasUsed))
             {
-                if (!candidate.IsDbAlive && DateTime.Compare(candidate.LastTimeConnectionWasUsed, DateTime.Now) > 0)
-                {
-                    // The DB instance was not alive and we are going to ignore it for 5 min (_timeToIgnoreFailedDbInMin)
-                    continue;
-                }
-
                 try
                 {
                     MySqlConnection mySqlConnection = new MySqlConnection(candidate.ConnectionString);
                     mySqlConnection.Open();
                     candidate.LastTimeConnectionWasUsed = DateTime.Now;
-                    candidate.IsDbAlive = true;
                     Log($"{DateTime.Now}: using: {candidate.ConnectionString}");
                     return mySqlConnection;
                 }
                 catch (Exception ex)
                 {
-                    candidate.LastTimeConnectionWasUsed = DateTime.Now.AddMinutes(_timeToIgnoreFailedDbInMin);    // don't use this connection for the next 5 mins
-                    candidate.IsDbAlive = false;
+                    // if instance is not responding, add 5 mins to it's last used time, so it would be ignored for the next 5 mins... 
+                    // If all connections are dead, ot Load Balancer cannot establish a connection on other nodes, it would try this again
+                    candidate.LastTimeConnectionWasUsed = DateTime.Now.AddMinutes(_timeToIgnoreFailedDbInMin);
                     message += $"{DateTime.Now}: Failed to connect to DB using: {candidate.ConnectionString}\n";
                     lastException = ex.Message;
                     Log($"{DateTime.Now.ToString()}: Failed to connect to: {candidate.ConnectionString}, marking this connection as dead for {_timeToIgnoreFailedDbInMin} min");

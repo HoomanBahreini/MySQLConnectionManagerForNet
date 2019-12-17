@@ -21,28 +21,25 @@ You can define a multi-host connection string as below:
 Then instanciate your `DbContext` like:
 
 ````
-    [DbConfigurationType(typeof(MySqlEFConfiguration))]
-    public class MyDbContext : DbContext
+[DbConfigurationType(typeof(MySqlEFConfiguration))]
+public class MyDbContext : DbContext
+{
+    // instead of passing the connection string name to base constructor, use the following base construcotr  
+    // public B2bDbContext() : base("DataDB")
+
+    // MySQLConnectionManager uses round robin algorithm to choose the least recently used host and establishes a connection to that node
+    // passing true for contextOwnConnection ensures that connection is terminated once MyDbContext is disposed
+    public MyDbContext() : base(MySQLConnectionManager.GetDeConnection("DataDB"), true/*contextOwnConnection*/)
     {
-        /*
-         * instead of passing the connection string name to base constructor, use the following base construcotr  
-         * public B2bDbContext() : base("DataDB")
-         */    
-
-        // MySQLConnectionManager uses round robin algorithm to choose the least recently used host and establishes a connection to that node
-        // passing true for contextOwnConnection ensures that connection is terminated once MyDbContext is disposed
-        public MyDbContext()
-           : base(MySQLConnectionManager.GetDeConnection("DataDB"), true/*contextOwnConnection*/)
-        {
-        }
-
-        public virtual DbSet<MyEntity1> MyEntity1 { get; set; }
-
-        public virtual DbSet<MyEntity2> MyEntity2 { get; set; }
-        
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-        }
     }
+
+    public virtual DbSet<MyEntity1> MyEntity1 { get; set; }
+
+    public virtual DbSet<MyEntity2> MyEntity2 { get; set; }
+        
+    protected override void OnModelCreating(DbModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+    }
+}
 ````

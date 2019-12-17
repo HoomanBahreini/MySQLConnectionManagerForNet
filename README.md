@@ -16,8 +16,20 @@ This project is for developers who use .NET with MySQL connector for .Net. It al
 
 You can define a multi-host connection string as below:
 
-    Server=host1, host2, host3; Database=myDataBase; Uid=myUsername; Pwd=myPassword
-    
+Create a folder in your project (you can call it DbConnectionManager) and copy the following 3 files in your project: 
+1. `DbLoadBalancer.cs`
+2. `LoadBalancedConnectionString.cs`
+3. `MySQLConnectionManager.cs`
+
+Now you can use a multi-host connection string, something like below:
+
+````
+<connectionStrings>
+    <add name="DataDB" connectionString="Server=10.20.30.1,10.20.30.2; Port=3306; Database=datadb; Uid=root; Pwd=secret" providerName="MySql.Data.MySqlClient"/>
+    <add name="LogDB" connectionString="Server=10.20.30.1,10.20.30.2; Port=3306; Database=logdb; Uid=root; Pwd=secret" providerName="MySql.Data.MySqlClient"/>
+</connectionStrings>
+````
+
 Then instanciate your `DbContext` like:
 
 ````

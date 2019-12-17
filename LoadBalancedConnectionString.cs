@@ -12,13 +12,10 @@ namespace MySQLLoadBalancer
         {
             ConnectionString = connectionString;
             LastTimeConnectionWasUsed = DateTime.Now;
-            IsDbAlive = true;
         }
 
         public string ConnectionString { get; set; }
 
         public DateTime LastTimeConnectionWasUsed { get; set; }
-
-        public bool IsDbAlive { get; set; }
     }
 }

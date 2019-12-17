@@ -26,7 +26,7 @@ namespace MySQLLoadBalancer
             }
         }
 
-        public static DbConnection GetDeConnection(string connectionStringName)
+        public static DbConnection GetLoadBalancedConnection(string connectionStringName)
         {
             if (_dbLoadBalancers.TryGetValue(connectionStringName, out DbLoadBalancer dbLoadBalancer))
             {

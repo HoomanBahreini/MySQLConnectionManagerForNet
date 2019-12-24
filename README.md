@@ -8,7 +8,7 @@ Most DB Connectors works with multi-host connection string. If we refer to MySQL
    
 The above connection string is valid, and the requests should be load balanaced among the 3 hosts. Unfortunately there are several open bugs ([81650](https://bugs.mysql.com/bug.php?id=81650), [88962](https://bugs.mysql.com/bug.php?id=88962)) for MySQL Connector for .Net and multi-host connection string does not work: 
 
-This project is for developers who use .NET with MySQL connector for .Net. It allows you to use a multi-host connection string and it uses a simple a round robin algorithm to distribute the requests among all hosts. If it detect that one of the hosts are down, it would ignore it for 5 mins, and then reties the host. Your connection would still work if you have at least one running DB instance.
+This project is for developers who use .NET with MySQL Connector/Net. It allows you to use a multi-host connection string and it uses a simple a round robin algorithm to distribute the requests among all hosts. If it detect that one of the hosts are down, it would ignore it for 5 mins, and then reties the host. Your connection would still work if you have at least one running DB instance.
 
 *Note: this project does not handle the synchronization among DB instances, it is simply a load balancer which distributes the load among DB instances*
 

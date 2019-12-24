@@ -18,7 +18,7 @@ namespace MySQLLoadBalancer
         /// Accepts the candidates connection string and uses a round robin algorithm to distribute the load amound candidate DBs.
         /// </summary>
         /// <param name="connectionStrings">one or more host name (DB instances)</param>
-        /// <param name="logFullPath">full path of the log file, if no path is passed through then logging will be disabled</param>
+        /// <param name="logFullPath">full path of the log file, if no path is passed in then logging will be disabled</param>
         public DbLoadBalancer(IEnumerable<string> connectionStrings, string logFullPath = "")
         {
             _loadBalancedConnectionStrings = new List<LoadBalancedConnectionString>();

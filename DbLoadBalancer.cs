@@ -48,7 +48,8 @@ namespace MySQLLoadBalancer
                 catch (Exception ex)
                 {
                     // if instance is not responding, add 5 mins to it's last used time, so it would be ignored for the next 5 mins... 
-                    // If Load Balancer cannot establish a connection on any other nodes, this connection would be tried again 
+                    // If Load Balancer cannot establish a connection on other nodes, this connection would be tried again, in this
+                    // particular scenario, LB would not wait 5 mins... 
                     candidate.LastTimeConnectionWasUsed = DateTime.Now.AddMinutes(_timeToIgnoreFailedDbInMin);
                     message += $"{DateTime.Now}: Failed to connect to DB using: {candidate.ConnectionString}\n";
                     lastException = ex.Message;

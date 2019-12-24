@@ -2,7 +2,7 @@
 
 The purpose of this project is to load balance requests among multiple hosts.
 
-Most DB Connectors works with multi-host connection string, for example if we refer to MySQL documentation, it explains that, we can add multiple hosts to connection string, for example:
+Most DB Connectors works with multi-host connection string. If we refer to MySQL documentation, it explains that, we can add multiple hosts to connection string, for example:
 
     Server=host1, host2, host3; Database=myDataBase; Uid=myUsername; Pwd=myPassword
    

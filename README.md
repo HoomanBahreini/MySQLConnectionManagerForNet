@@ -56,5 +56,5 @@ public class MyDbContext : DbContext
 
 # Keep in mind
 
-This is intented only for MySQL and Connector .Net, most other connectors already handle a multi-host connection string, and you won't be needing this project. 
+This is intented only for MySQL and Connector/Net, most other connectors already handle a multi-host connection string, and you won't be needing this project. 
 

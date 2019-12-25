@@ -39,11 +39,19 @@ namespace MySQLLoadBalancer
         private static List<string> SplitMultiHostConnectionString(string connectionString)
         {
             List<string> singleHostConnectionString = new List<string>();
+            DbConnectionStringBuilder dbConnectionStringBuilder = null;
 
-            DbConnectionStringBuilder dbConnectionStringBuilder = new DbConnectionStringBuilder()
+            try
             {
-                ConnectionString = connectionString
-            };
+                dbConnectionStringBuilder = new DbConnectionStringBuilder()
+                {
+                    ConnectionString = connectionString
+                };
+            }
+            catch
+            {
+                return singleHostConnectionString;
+            }
 
             if (dbConnectionStringBuilder.ContainsKey(_server))
             {
@@ -52,8 +60,10 @@ namespace MySQLLoadBalancer
 
                 foreach (string server in allServersArray)
                 {
-                    DbConnectionStringBuilder builder = new DbConnectionStringBuilder();
-                    builder.ConnectionString = dbConnectionStringBuilder.ConnectionString;
+                    DbConnectionStringBuilder builder = new DbConnectionStringBuilder
+                    {
+                        ConnectionString = dbConnectionStringBuilder.ConnectionString
+                    };
                     builder[_server] = server.Trim();
                     singleHostConnectionString.Add(builder.ConnectionString);
                 }
